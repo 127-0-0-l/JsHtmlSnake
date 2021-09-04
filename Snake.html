@@ -9,15 +9,32 @@
 			margin: 0;
 			padding: 0;
 			background-color: #082032;
+			font-family: monospace;
+		}
+		button {
+			border: none;
 		}
 		.workContainer {
 			display: block;
 			width: 100%;
 			margin: 50px auto;
 		}
+		.btnStart {
+			background: #082032;
+			color: #FF4C29;
+			border: 2px solid #FF4C29;
+			font-size: 25px;
+			font-family: monospace;
+			display: block;
+			margin: 0 auto;
+		}
+		.btnStart:hover, .turnBtn:hover {
+			background-color: #FF4C29;
+			color: #082032;
+		}
 		.playField {
 			padding: 0;
-			margin: 0 auto;
+			margin: 25px auto;
 			width: 300px;
 			height: 300px;
 			border: 2px solid #FF4C29;
@@ -44,8 +61,11 @@
 			position: relative;
 			width: 50px;
 			height: 40px;
-			background: #FF4C29;
-			border: none;
+			border: 2px solid #FF4C29;
+			background: none;
+			color: #FF4C29;
+			font-size: 25px;
+			font-family: monospace;
 		}
 		#btnUp {
 			margin-left: 50%;
@@ -66,6 +86,7 @@
 </head>
 <body>
 	<div class="workContainer">
+		<button class="btnStart">Start</button>
 		<div class="playField">
 			<div class="coordRow">
 				<div class="coordinate"></div>
@@ -189,12 +210,12 @@
 			</div>
 		</div>
 		<div class="btnForActive">
-			<button id="btnUp" class="turnBtn" onclick="turnUp()">Вверх</button>
+			<button id="btnUp" class="turnBtn" onclick="turnUp()">U</button>
 			<br>
-			<button id="btnLeft" class="turnBtn" onclick="turnLeft()">Влево</button>
-			<button id="btnRight" class="turnBtn" onclick="turnRight()">Вправо</button>
+			<button id="btnLeft" class="turnBtn" onclick="turnLeft()">L</button>
+			<button id="btnRight" class="turnBtn" onclick="turnRight()">R</button>
 			<br>
-			<button id="btnDown" class="turnBtn" onclick="turnDown()">Вниз</button>
+			<button id="btnDown" class="turnBtn" onclick="turnDown()">D</button>
 		</div>
 	</div>
 	
