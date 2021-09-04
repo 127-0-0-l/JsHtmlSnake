@@ -153,10 +153,59 @@
 		</div>
 	</div>
 	<div class="btnForActive">
-		<button id="btnUp">Вверх</button>
-		<button id="btnLeft">Влево</button>
-		<button id="btnRight">Вправо</button>
-		<button id="btnDown">Вниз</button>
+		<button onclick="turnUp()">Вверх</button>
+		<button onclick="turnLeft()">Влево</button>
+		<button onclick="turnRight()">Вправо</button>
+		<button onclick="turnDown()">Вниз</button>
 	</div>
 </body>
 </html>
+
+<script>
+	const Direction = {
+		Up,
+		Down,
+		Left,
+		Right
+	}
+
+	var currentDirection
+	var intervalId
+	var currentRow
+	var currentColumn
+
+	function turnUp(){
+		currentRow = 0
+		currentColumn = 0
+		runSnake()
+		currentDirection = Direction.Up
+	}
+
+	function turnDown(){
+		currentDirection = Direction.Down
+	}
+
+	function turnLeft(){
+		currentDirection = Direction.Left
+	}
+
+	function turnRight(){
+		currentDirection = Direction.Right
+	}
+
+	function runSnake(){
+        intervalId = window.setInterval(function(){
+            SetColor(currentRow, currentColumn, 'red')
+			currentRow += 1
+			currentColumn += 1
+        }, 1000);
+    }
+
+	function stopSnake(){
+        clearInterval(intervalId)
+    }
+
+	function SetColor(row, column, color){
+		document.getElementsByClassName('coordinate')[row * 10 + column].style.backgroundColor = color
+	}
+</script>
