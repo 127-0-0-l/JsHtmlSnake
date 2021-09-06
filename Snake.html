@@ -5,12 +5,39 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>SnakeJS</title>
 	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #082032;
+			font-family: monospace;
+		}
+		button {
+			border: none;
+		}
+		.workContainer {
+			display: block;
+			width: 100%;
+			margin: 50px auto;
+		}
+		.btnStart {
+			background: #082032;
+			color: #FF4C29;
+			border: 2px solid #FF4C29;
+			font-size: 25px;
+			font-family: monospace;
+			display: block;
+			margin: 0 auto;
+		}
+		.btnStart:hover, .turnBtn:hover {
+			background-color: #FF4C29;
+			color: #082032;
+		}
 		.playField {
 			padding: 0;
-			margin: 0;
-			width: 400px;
-			height: 400px;
-			border: 2px solid black;
+			margin: 25px auto;
+			width: 300px;
+			height: 300px;
+			border: 2px solid #FF4C29;
 		}
 		.coordRow {
 			padding: 0;
@@ -21,143 +48,177 @@
 		.coordinate {
 			padding: 0;
 			margin: 0;
-			width: 40px;
-			height: 40px;
+			width: 30px;
+			height: 30px;
 			display: flex;
 
+		}
+		.btnForActive {
+			width: 180px;
+			margin: 20px auto;
+		}
+		.turnBtn {
+			position: relative;
+			width: 50px;
+			height: 40px;
+			border: 2px solid #FF4C29;
+			background: none;
+			color: #FF4C29;
+			font-size: 25px;
+			font-family: monospace;
+		}
+		#btnUp {
+			margin-left: 50%;
+			transform: translate(-50%, 0);
+		}
+		#btnLeft {
+			transform: translate(0, 50%);
+		}
+		#btnRight {
+			margin-left: 100%;
+			transform: translate(-100%, -50%);
+		}
+		#btnDown {
+			margin-left: 50%;
+			transform: translate(-50%, 0);
 		}
 	</style>
 </head>
 <body>
-	<div class="playField">
-		<div class="coordRow">
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
+	<div class="workContainer">
+		<button class="btnStart">Start</button>
+		<div class="playField">
+			<div class="coordRow">
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+			</div>
+			<div class="coordRow">
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+			</div>
+			<div class="coordRow">
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+			</div>
+			<div class="coordRow">
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+			</div>
+			<div class="coordRow">
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+			</div>
+			<div class="coordRow">
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+			</div>
+			<div class="coordRow">
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+			</div>
+			<div class="coordRow">
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+			</div>
+			<div class="coordRow">
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+			</div>
+			<div class="coordRow">
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+				<div class="coordinate"></div>
+			</div>
 		</div>
-		<div class="coordRow">
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-		</div>
-		<div class="coordRow">
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-		</div>
-		<div class="coordRow">
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-		</div>
-		<div class="coordRow">
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-		</div>
-		<div class="coordRow">
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-		</div>
-		<div class="coordRow">
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-		</div>
-		<div class="coordRow">
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-		</div>
-		<div class="coordRow">
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-		</div>
-		<div class="coordRow">
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-			<div class="coordinate"></div>
-		</div>
+		<div class="btnForActive">
+			<button id="btnUp" class="turnBtn" onclick="turnUp()">U</button>
+			<br>
+			<button id="btnLeft" class="turnBtn" onclick="turnLeft()">L</button>
+			<button id="btnRight" class="turnBtn" onclick="turnRight()">R</button>
+			<br>
+			<button id="btnDown" class="turnBtn" onclick="turnDown()">D</button>
 		</div>
 	</div>
-	<div class="btnForActive">
-		<button onclick="turnUp()">Вверх</button>
-		<button onclick="turnLeft()">Влево</button>
-		<button onclick="turnRight()">Вправо</button>
-		<button onclick="turnDown()">Вниз</button>
-	</div>
+	
 </body>
 </html>
 
@@ -195,7 +256,7 @@
 
 	function runSnake(){
         intervalId = window.setInterval(function(){
-            SetColor(currentRow, currentColumn, 'red')
+            SetColor(currentRow, currentColumn, '#FF4C29')
 			currentRow += 1
 			currentColumn += 1
         }, 1000);
