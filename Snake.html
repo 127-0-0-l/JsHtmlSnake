@@ -86,7 +86,8 @@
 </head>
 <body>
 	<div class="workContainer">
-		<button class="btnStart">Start</button>
+		<button class="btnStart" onclick="runSnake()">Start</button>
+
 		<div class="playField">
 			<div class="coordRow">
 				<div class="coordinate"></div>
@@ -210,12 +211,12 @@
 			</div>
 		</div>
 		<div class="btnForActive">
-			<button id="btnUp" class="turnBtn" onclick="turnUp()">U</button>
+			<button id="btnUp" class="turnBtn" onclick="turnUp()">↑</button>
 			<br>
-			<button id="btnLeft" class="turnBtn" onclick="turnLeft()">L</button>
-			<button id="btnRight" class="turnBtn" onclick="turnRight()">R</button>
+			<button id="btnLeft" class="turnBtn" onclick="turnLeft()">←</button>
+			<button id="btnRight" class="turnBtn" onclick="turnRight()">→</button>
 			<br>
-			<button id="btnDown" class="turnBtn" onclick="turnDown()">D</button>
+			<button id="btnDown" class="turnBtn" onclick="turnDown()">↓</button>
 		</div>
 	</div>
 	
@@ -224,41 +225,66 @@
 
 <script>
 	const Direction = {
-		Up,
-		Down,
-		Left,
-		Right
+		Up: 'Up',
+		Down: 'Down',
+		Left: 'Left',
+		Right: 'Right'
 	}
 
-	var currentDirection
+	var currentDirection = Direction.Right
 	var intervalId
-	var currentRow
-	var currentColumn
+
+	var colorHead = '#F5F5F5'
+	var colorBody = '#3FBAC2'
+
+	var snake = {
+		head: {row: 0, column: 1},
+		tail: {row: 0, column: 0}
+	}
 
 	function turnUp(){
-		currentRow = 0
-		currentColumn = 0
-		runSnake()
-		currentDirection = Direction.Up
+		if(currentDirection != Direction.Down){
+			currentDirection = Direction.Up
+		}
 	}
 
 	function turnDown(){
-		currentDirection = Direction.Down
+		if(currentDirection != Direction.Up){
+			currentDirection = Direction.Down
+		}
 	}
 
 	function turnLeft(){
-		currentDirection = Direction.Left
+		if(currentDirection != Direction.Right){
+			currentDirection = Direction.Left
+		}
 	}
 
 	function turnRight(){
-		currentDirection = Direction.Right
+		if(currentDirection != Direction.Left){
+			currentDirection = Direction.Right
+		}
 	}
 
 	function runSnake(){
+		SetColor(snake.head.row, snake.head.column, colorHead)
+		SetColor(snake.tail.row, snake.tail.column, colorBody)
+
         intervalId = window.setInterval(function(){
-            SetColor(currentRow, currentColumn, '#FF4C29')
-			currentRow += 1
-			currentColumn += 1
+            switch(currentDirection){
+				case Direction.Up:
+					snake.head.row--
+					break;
+				case Direction.Down:
+					snake.head.row++
+					break;
+				case Direction.Left:
+					snake.head.column--
+					break;
+				case Direction.Right:
+					snake.head.column++
+					break;
+			}
         }, 1000);
     }
 
@@ -269,4 +295,6 @@
 	function SetColor(row, column, color){
 		document.getElementsByClassName('coordinate')[row * 10 + column].style.backgroundColor = color
 	}
+
+	
 </script>
