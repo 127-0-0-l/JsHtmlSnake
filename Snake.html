@@ -236,11 +236,11 @@
 
 	var colorHead = '#F5F5F5'
 	var colorBody = '#3FBAC2'
+	var colorGround = '#082032'
+	var colorFood = '#61B15A'
+	var colorWall = '#000000'
 
-	var snake = {
-		head: {row: 0, column: 1},
-		tail: {row: 0, column: 0}
-	}
+	var snake = [{row: 0, column: 0}]
 
 	function turnUp(){
 		if(currentDirection != Direction.Down){
@@ -273,20 +273,55 @@
         intervalId = window.setInterval(function(){
             switch(currentDirection){
 				case Direction.Up:
-					snake.head.row--
+					snake.nextStep.row--
 					break;
 				case Direction.Down:
-					snake.head.row++
+					snake.nextStep.row++
 					break;
 				case Direction.Left:
-					snake.head.column--
+					snake.nextStep.column--
 					break;
 				case Direction.Right:
-					snake.head.column++
+					snake.nextStep.column++
 					break;
 			}
+
+			makeStep(snake.nextStep.row, snake.nextStep.column)
         }, 1000);
     }
+
+	function makeStep(row, column){
+		switch(GetColor(row, column)){
+			case colorGround:
+				SetColor(snake.head.row, snake.head.column, colorBody)
+				SetColor(snake.tail.row, snake.tail.column, colorGround)
+				SetColor(row, column, colorHead)
+				snake.head.row = row
+				snake.head.column = column
+				break;
+			case colorFood:
+				SetColor(snake.head.row, snake.head.column, colorBody)
+				SetColor(snake.tail.row, snake.tail.column, colorGround)
+				SetColor(row, column, colorHead)
+				snake.head.row = row
+				snake.head.column = column
+				break;
+			case colorWall:
+				SetColor(snake.head.row, snake.head.column, colorBody)
+				SetColor(snake.tail.row, snake.tail.column, colorGround)
+				SetColor(row, column, colorHead)
+				snake.head.row = row
+				snake.head.column = column
+				break;
+			case colorBody:
+				SetColor(snake.head.row, snake.head.column, colorBody)
+				SetColor(snake.tail.row, snake.tail.column, colorGround)
+				SetColor(row, column, colorHead)
+				snake.head.row = row
+				snake.head.column = column
+				break;
+		}
+	}
 
 	function stopSnake(){
         clearInterval(intervalId)
@@ -296,5 +331,27 @@
 		document.getElementsByClassName('coordinate')[row * 10 + column].style.backgroundColor = color
 	}
 
-	
+	function GetColor(row, column){
+		if(row < 10 && column < 10){
+			return document.getElementsByClassName('coordinate')[row * 10 + column].style.backgroundColor
+		}
+		else{
+			return colorWall
+		}
+	}
+
+	function generateFood(){
+		var food = {
+			column: 0,
+			row: 0
+		}
+
+		do{
+			food.column = Math.trunc(Math.random() * 10)
+			food.y = Math.trunc(Math.random() * 10)
+		}
+		while(getColor(food.y, food.column) != colorGround)
+
+		SetColor(food.y, food.column, colorFood)
+	}
 </script>
