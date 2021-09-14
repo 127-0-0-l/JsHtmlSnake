@@ -354,4 +354,12 @@
 
 		SetColor(food.y, food.column, colorFood)
 	}
+
+	function clearMap(){
+		for (let row = 0; row < 10; row++) {
+			for (let column = 0; column < 10; column++) {
+				SetColor(row, column, colorGround)
+			}
+		}
+	}
 </script>
