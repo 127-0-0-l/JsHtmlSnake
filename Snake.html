@@ -274,7 +274,7 @@
 
 	function runSnake(){
 		clearMap()
-		alert(document.getElementById('colorHead').style.backgroundColor)
+		generateFood()
 		snake = []
 		snake.push({row: 0, column: 0})
 		snake.push({row: 0, column: 1})
@@ -296,7 +296,7 @@
 					makeStep(snake[snake.length - 1].row, snake[snake.length - 1].column + 1)
 					break;
 			}
-        }, 1000);
+        }, 300);
     }
 
 	function makeStep(row, column){
@@ -312,6 +312,7 @@
 				SetColor(snake[snake.length - 1].row, snake[snake.length - 1].column, colorBody)
 				SetColor(row, column, colorHead)
 				snake.push({row: row, column: column})
+				generateFood()
 				break;
 			case colorWall:
 				stopSnake()
@@ -349,7 +350,7 @@
 			food.column = Math.trunc(Math.random() * 10)
 			food.y = Math.trunc(Math.random() * 10)
 		}
-		while(getColor(food.y, food.column) != colorGround)
+		while(GetColor(food.y, food.column) != colorGround)
 
 		SetColor(food.y, food.column, colorFood)
 	}
@@ -360,9 +361,5 @@
 				SetColor(row, column, colorGround)
 			}
 		}
-	}
-
-	function rgbToHex(color) {
-		return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 	}
 </script>
