@@ -85,6 +85,12 @@
 	</style>
 </head>
 <body>
+	<div id='colorGround' style="color: #082032;"></div>
+	<div id='colorBody' style="color: #3FBAC2;"></div>
+	<div id='colorHead' style="color: #F5F5F5;"></div>
+	<div id='colorFood' style="color: #61B15A;"></div>
+	<div id='colorWall' style="color: #000000;"></div>
+
 	<div class="workContainer">
 		<button class="btnStart" onclick="runSnake()">Start</button>
 
@@ -234,13 +240,13 @@
 	var currentDirection = Direction.Right
 	var intervalId
 
-	var colorHead = '#F5F5F5'
-	var colorBody = '#3FBAC2'
-	var colorGround = '#082032'
-	var colorFood = '#61B15A'
-	var colorWall = '#000000'
+	var colorHead = document.getElementById('colorHead').style.color
+	var colorBody = document.getElementById('colorBody').style.color
+	var colorGround = document.getElementById('colorGround').style.color
+	var colorFood = document.getElementById('colorFood').style.color
+	var colorWall = document.getElementById('colorWall').style.color
 
-	var snake = [{row: 0, column: 0}]
+	var snake = []
 
 	function turnUp(){
 		if(currentDirection != Direction.Down){
@@ -267,58 +273,51 @@
 	}
 
 	function runSnake(){
-		SetColor(snake.head.row, snake.head.column, colorHead)
-		SetColor(snake.tail.row, snake.tail.column, colorBody)
+		clearMap()
+		alert(document.getElementById('colorHead').style.backgroundColor)
+		snake = []
+		snake.push({row: 0, column: 0})
+		snake.push({row: 0, column: 1})
+		SetColor(snake[0].row, snake[0].column, colorBody)
+		SetColor(snake[1].row, snake[1].column, colorHead)
 
         intervalId = window.setInterval(function(){
             switch(currentDirection){
 				case Direction.Up:
-					snake.nextStep.row--
+					makeStep(snake[snake.length - 1].row - 1, snake[snake.length - 1].column)
 					break;
 				case Direction.Down:
-					snake.nextStep.row++
+					makeStep(snake[snake.length - 1].row + 1, snake[snake.length - 1].column)
 					break;
 				case Direction.Left:
-					snake.nextStep.column--
+					makeStep(snake[snake.length - 1].row, snake[snake.length - 1].column - 1)
 					break;
 				case Direction.Right:
-					snake.nextStep.column++
+					makeStep(snake[snake.length - 1].row, snake[snake.length - 1].column + 1)
 					break;
 			}
-
-			makeStep(snake.nextStep.row, snake.nextStep.column)
         }, 1000);
     }
 
 	function makeStep(row, column){
 		switch(GetColor(row, column)){
 			case colorGround:
-				SetColor(snake.head.row, snake.head.column, colorBody)
-				SetColor(snake.tail.row, snake.tail.column, colorGround)
+				SetColor(snake[snake.length - 1].row, snake[snake.length - 1].column, colorBody)
+				SetColor(snake[0].row, snake[0].column, colorGround)
 				SetColor(row, column, colorHead)
-				snake.head.row = row
-				snake.head.column = column
+				snake.push({row: row, column: column})
+				snake.shift()
 				break;
 			case colorFood:
-				SetColor(snake.head.row, snake.head.column, colorBody)
-				SetColor(snake.tail.row, snake.tail.column, colorGround)
+				SetColor(snake[snake.length - 1].row, snake[snake.length - 1].column, colorBody)
 				SetColor(row, column, colorHead)
-				snake.head.row = row
-				snake.head.column = column
+				snake.push({row: row, column: column})
 				break;
 			case colorWall:
-				SetColor(snake.head.row, snake.head.column, colorBody)
-				SetColor(snake.tail.row, snake.tail.column, colorGround)
-				SetColor(row, column, colorHead)
-				snake.head.row = row
-				snake.head.column = column
+				stopSnake()
 				break;
 			case colorBody:
-				SetColor(snake.head.row, snake.head.column, colorBody)
-				SetColor(snake.tail.row, snake.tail.column, colorGround)
-				SetColor(row, column, colorHead)
-				snake.head.row = row
-				snake.head.column = column
+				stopSnake()
 				break;
 		}
 	}
@@ -332,7 +331,7 @@
 	}
 
 	function GetColor(row, column){
-		if(row < 10 && column < 10){
+		if(row < 10 && row >= 0 && column < 10 && column >= 0){
 			return document.getElementsByClassName('coordinate')[row * 10 + column].style.backgroundColor
 		}
 		else{
@@ -361,5 +360,9 @@
 				SetColor(row, column, colorGround)
 			}
 		}
+	}
+
+	function rgbToHex(color) {
+		return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 	}
 </script>
