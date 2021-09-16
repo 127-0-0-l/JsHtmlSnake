@@ -274,12 +274,12 @@
 
 	function runSnake(){
 		clearMap()
-		generateFood()
 		snake = []
 		snake.push({row: 0, column: 0})
 		snake.push({row: 0, column: 1})
 		SetColor(snake[0].row, snake[0].column, colorBody)
 		SetColor(snake[1].row, snake[1].column, colorHead)
+		generateFood()
 
         intervalId = window.setInterval(function(){
             switch(currentDirection){
