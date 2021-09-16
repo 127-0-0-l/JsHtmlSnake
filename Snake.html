@@ -272,6 +272,9 @@
 	}
 
 	function runSnake(){
+		if (intervalId != null){
+			stopSnake()
+		}
 		clearMap()
 		currentDirection = Direction.Right
 		snake = []
