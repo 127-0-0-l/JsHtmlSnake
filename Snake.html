@@ -75,11 +75,24 @@
 		}
 		#btnRight {
 			margin-left: 100%;
-			transform: translate(-100%, -50%);
+			transform: translate(-100%, -155%);
 		}
 		#btnDown {
 			margin-left: 50%;
-			transform: translate(-50%, 0);
+			transform: translate(-50%, -120%);
+		}
+		.counter {
+			position: relative;
+			width: 50px;
+			height: 40px;
+			margin-left: 50%;
+			transform: translate(-50%, -50%);
+			background: #082032;
+			color: #FF4C29;
+			border: none;
+			text-align: center;
+			font-size: 22px;
+			outline: none;
 		}
 	</style>
 </head>
@@ -219,6 +232,7 @@
 			<button id="btnUp" class="turnBtn" onclick="turnUp()">↑</button>
 			<br>
 			<button id="btnLeft" class="turnBtn" onclick="turnLeft()">←</button>
+			<input type="text" class="counter" value="00" readonly="readonly">
 			<button id="btnRight" class="turnBtn" onclick="turnRight()">→</button>
 			<br>
 			<button id="btnDown" class="turnBtn" onclick="turnDown()">↓</button>
