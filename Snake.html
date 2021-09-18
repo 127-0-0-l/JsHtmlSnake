@@ -232,7 +232,7 @@
 			<button id="btnUp" class="turnBtn" onclick="turnUp()">↑</button>
 			<br>
 			<button id="btnLeft" class="turnBtn" onclick="turnLeft()">←</button>
-			<input type="text" class="counter" value="00" readonly="readonly">
+			<input type="text" class="counter" value="0" readonly="readonly">
 			<button id="btnRight" class="turnBtn" onclick="turnRight()">→</button>
 			<br>
 			<button id="btnDown" class="turnBtn" onclick="turnDown()">↓</button>
@@ -289,6 +289,7 @@
 		if (intervalId != null){
 			stopSnake()
 		}
+		document.getElementsByClassName("counter")[0].value = 0
 		clearMap()
 		currentDirection = Direction.Right
 		snake = []
@@ -329,6 +330,7 @@
 				SetColor(snake[snake.length - 1].row, snake[snake.length - 1].column, colorBody)
 				SetColor(row, column, colorHead)
 				snake.push({row: row, column: column})
+				document.getElementsByClassName("counter")[0].value = parseInt(document.getElementsByClassName("counter")[0].value) + 1
 				generateFood()
 				break;
 			case colorWall:
